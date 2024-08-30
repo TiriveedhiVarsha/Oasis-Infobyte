@@ -1,0 +1,13 @@
+import requests
+api_key = '6657ada8d7ae4cac9e0160834242808'
+city = input('Enter city name: ')
+url= f'http://api.weatherapi.com/v1/current.json?q={city}&key={api_key}'
+response = requests.get(url)
+if response.status_code == 200:
+  data = response.json()
+  temp = data['current']['temp_c']
+  desc = data['current']['condition']['text']
+  print(f'Temperature: {temp} K')
+  print(f'Description: {desc}')
+else:
+  print('Error fetching weather data')
